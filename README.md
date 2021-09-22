@@ -3,13 +3,25 @@
 ![setup](setup_image.png)
 
 ### Setup/Overview
-- RaspberryPi: __RaspberryPi 4B__
-- OS: Ubuntu-Server __(Ubuntu 20.04.3 LTS)__
-- ROS-2 version: __Foxy Fitzroy__
-- each Button is implemented as an own ROS2-Node in __C++__
-- the RFID-RC522 module is implemented as an own ROS2-Node in __C++__
-- on the RaspberryPi 4B are two ROS2-Nodes implemented in __Python__ which handle the informations 
+- RaspberryPi: **RaspberryPi 4B**
+- OS: Ubuntu-Server **(Ubuntu 20.04.3 LTS)**
+- ROS-2 version: **Foxy Fitzroy**
+- each Button is implemented as an own ROS2-Node in **C++**
+- the RFID-RC522 module is implemented as an own ROS2-Node in **C++**
+- on the RaspberryPi 4B are two ROS2-Nodes implemented in **Python** which handle the informations 
 from the "Hardware"-parts
+
+### How does it work
+- after you setup and configured your ROS2 on your RaspberryPi
+- add your soundfile path for the corresponding RFID-UUID into the database-server
+- start the launch file `tonie_box.launch.py` from the `tonie_box_bringup` package 
+(`ros2 launch tonie_box_bringup tonie_box.launch.py)
+- now you can put a Figure/RFID token/card on the RFID reader and it will start playing the sound which belongs
+to the RFID-UUID
+- removing the Figure/RFID token/card will stop playing the soundfile
+- pressing/holding the **white button** will **decrease the sound**
+- pressing/holding the **blue button** will **increase the sound**
+- pressing the **red button** will **pause/resume** playing the soundfile
 
 ---
 ### Hardware

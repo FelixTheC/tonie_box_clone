@@ -18,18 +18,21 @@ DEFAULT_TRACK = "/home/felix/music/"
 
 
 class DatabaseServerNode(Node):
-
     def __init__(self):
         super().__init__("database_server")
-        self.server_ = self.create_service(GetParameters, "get_music_path", self.callback_get_file_path)
+        self.server_ = self.create_service(
+            GetParameters, "get_music_path", self.callback_get_file_path
+        )
         self.logger_info("Hello ROS2")
 
     def callback_get_file_path(self, request, response):
-        self.logger_info(f'received: {request = }')
+        self.logger_info(f"received: {request = }")
         track_path = SIMPLE_DATABASE.get(str(request.names[0]), DEFAULT_TRACK)
         value = ParameterValue()
         value.string_value = track_path
-        response.values = [value, ]
+        name = ParameterValue()
+        name.string_value = str(request.names[0])
+        response.values = [value, name]
         return response
 
     def logger_info(self, text: str):
@@ -45,5 +48,5 @@ def main(args=None):
         rclpy.shutdown()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
